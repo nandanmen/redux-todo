@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { arrayOf, shape, number, string, bool } from 'prop-types';
 import Todo from './Todo';
 
-function TodoList({ todos }) {
+function TodoList() {
+  const todos = useSelector(state => state.todos);
   return (
     <div>
       {todos && todos.length
@@ -11,10 +12,6 @@ function TodoList({ todos }) {
         : 'Nothing to do!'}
     </div>
   );
-}
-
-function mapStateToProps(state) {
-  return { todos: state.todos };
 }
 
 TodoList.propTypes = {
@@ -31,4 +28,4 @@ TodoList.defaultProps = {
   todos: []
 };
 
-export default connect(mapStateToProps)(TodoList);
+export default TodoList;

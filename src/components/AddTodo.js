@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addTodo } from '../redux/actionCreators';
 
-function AddTodo({ addTodo }) {
+function AddTodo() {
+  const dispatch = useDispatch();
   const [todoContent, setTodoContent] = useState('');
 
   const handleChange = e => setTodoContent(e.target.value);
 
   const handleSubmit = e => {
     e.preventDefault();
-    addTodo(todoContent);
+    dispatch(addTodo(todoContent));
     setTodoContent('');
   };
 
@@ -23,7 +24,4 @@ function AddTodo({ addTodo }) {
   );
 }
 
-export default connect(
-  null,
-  { addTodo }
-)(AddTodo);
+export default AddTodo;
